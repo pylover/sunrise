@@ -1,6 +1,6 @@
-class Action :
+class Action:
 	pass
 
 
-class Calculator(Action) :
-	pass
+class Calculator(Action):
+        pass

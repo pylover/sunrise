@@ -1,13 +1,17 @@
 import re
+
 from sunrise.actions import Calculator
 
 
 patternslist = [
-    ('[-+]?[0-9]+\.?[0-9]*\s*[-+*\/]\s*[-+]?[0-9]+\.?[0-9]*', Calculator)
+    (re.compile(r'[-+]?[0-9]+\.?[0-9]*\s*[-+*\/]\s*[-+]?[0-9]+\.?[0-9]*')
+    , Calculator)
 ]
+
 
 def parse(inputstring):
     for pattern, action in patternslist:
-        if re.search(pattern, inputstring):
+        if pattern.match(inputstring):
             return action
-    raise ParserException(inputstring)
+
+    raise ParseError(inputstring)
