@@ -1,9 +1,13 @@
-from sunrise import parser
-from sunrise.actions import Action, Calculator
+from sunrise.actions import find, Action, Calculator
 
 
 def test_parser():
-    action = parser.parse('2 + 4')
+    action, params = find('2 + 4')
     assert issubclass(action, Action)
     assert issubclass(action, Calculator)
+    assert params == {
+        'a': '2',
+        'operator': '+',
+        'b': '4'
+    }
 
