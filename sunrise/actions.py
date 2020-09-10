@@ -16,6 +16,7 @@ class Calculator(Action):
         self.operator = {
             'Add': '+',
             'Sub': '-',
+            'subtract': '-',
         }[operator] if operator not in self.operators else operator
         self.numbers = [a, b]
 
@@ -30,7 +31,13 @@ patterns = [
     ),
     (
         re.compile(
-            r'(?P<operator>Add|Sub)\s*(?P<a>\d+)\s*(with|by)\s*(?P<b>\d+)'
+            r'(?P<operator>Add)\s*(?P<a>\d+)\s*(with|by)\s*(?P<b>\d+)'
+        ),
+        Calculator
+    ),
+    (
+        re.compile(
+            r'(?P<operator>Sub|subtract)\s*(?P<b>\d+)\s*(from)\s*(?P<a>\d+)'
         ),
         Calculator
     ),
