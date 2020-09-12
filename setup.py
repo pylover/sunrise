@@ -5,6 +5,7 @@ import re
 
 
 dependencies = [
+    'pymlconf',
 ]
 
 
