@@ -10,13 +10,15 @@ class Action(metaclass=abc.ABCMeta):
 
 
 class Calculator(Action):
-    operators = ['+', '-', '*', '/']
+    operators = ['+', '-', '*']
 
     def __init__(self, operator, a, b):
         self.operator = {
             'Add': '+',
             'Sub': '-',
             'subtract': '-',
+            'Div': '//',
+            '/': '//',
         }[operator] if operator not in self.operators else operator
         self.numbers = [a, b]
 
@@ -38,6 +40,18 @@ patterns = [
     (
         re.compile(
             r'(?P<operator>Sub|subtract)\s*(?P<b>\d+)\s*(from)\s*(?P<a>\d+)'
+        ),
+        Calculator
+    ),
+    (
+        re.compile(
+            r'(?P<operator>Div)\s*(?P<b>\d+)\s*(into)\s*(?P<a>\d+)'
+        ),
+        Calculator
+    ),
+    (
+        re.compile(
+            r'(?P<operator>Div)\s*(?P<a>\d+)\s*(by)\s*(?P<b>\d+)'
         ),
         Calculator
     ),
