@@ -1,6 +1,7 @@
 from sunrise import settings
 from sunrise import configuration
 
+
 def test_settings():
     configuration.builtins = '''
     foo:
